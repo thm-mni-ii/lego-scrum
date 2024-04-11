@@ -2,7 +2,7 @@
 
 # LegoSCRUM
 
-Live: https://legoscrum.firebaseapp.com/
+Live: https://homepages.thm.de/~sspp77/legoscrum
 
 ## Contribution Guide
 
