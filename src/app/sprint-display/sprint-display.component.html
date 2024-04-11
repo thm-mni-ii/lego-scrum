@@ -1,0 +1,132 @@
+@if (sprintNumber != null && sprintState != null && productBacklog != null) {
+  <div class="d-flex flex-column" style="height: 100%">
+    <div class="p-3">
+      <div class="d-flex justify-content-between">
+        <div>
+          <h4>Lego SCRUM ({{sprintNumber}}. Sprint)</h4>
+        </div>
+        <div>
+          <img style="height: 40px" src="/assets/mni.svg">
+        </div>
+      </div>
+      <h5>Product Backlog</h5>
+      <div class="d-flex justify-content-between">
+        <div>
+          <table>
+            @for (productBacklogEntry of productBacklog.entries; track productBacklogEntry.title) {
+              <tr>
+                <td class="pe-3">
+                  <app-product-backlog-entry-label-display [state]="productBacklogEntry.state" [label]="($index + 1).toString() + '.'"></app-product-backlog-entry-label-display>
+                </td>
+                <td class="pe-3">
+                  <app-product-backlog-entry-label-display [state]="productBacklogEntry.state" [label]="productBacklogEntry.title"></app-product-backlog-entry-label-display>
+                </td>
+                <td>
+                  @if (productBacklogEntry.subTitle != "") {
+                    <app-product-backlog-entry-label-display [state]="productBacklogEntry.state" [label]="'(' + productBacklogEntry.subTitle + ')'"></app-product-backlog-entry-label-display>
+                  }
+                </td>
+              </tr>
+            }
+          </table>
+        </div>
+        <div class="d-flex flex-column align-items-end">
+          <table class="mb-3">
+            <tr>
+              <td>
+                @if (sprintState == SprintState.planning) {
+                  <fa-icon [icon]="faRightLong" class="me-3"></fa-icon>
+                }
+              </td>
+              <td>
+                <span class="me-3 fw-medium">Planning</span>
+              </td>
+              <td>
+                <span class="me-3">{{getDuration(SprintState.planning)}} Minuten</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                @if (sprintState == SprintState.building1) {
+                  <fa-icon [icon]="faRightLong" class="me-3"></fa-icon>
+                }
+              </td>
+              <td>
+                <span class="me-3 fw-medium">Bauen</span>
+              </td>
+              <td>
+                <span class="me-3">{{getDuration(SprintState.building1)}} Minuten</span>
+              </td>
+              <td rowspan="3" style="border-left: 2px solid black">
+                <span class="ms-1 fw-medium vertical-align-middle">Sprint</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                @if (sprintState == SprintState.daily) {
+                  <fa-icon [icon]="faRightLong" class="me-3"></fa-icon>
+                }
+              </td>
+              <td>
+                <span class="me-3 fw-medium">Daily</span>
+              </td>
+              <td>
+                <span class="me-3">{{getDuration(SprintState.daily)}} Minuten</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                @if (sprintState == SprintState.building2) {
+                  <fa-icon [icon]="faRightLong" class="me-3"></fa-icon>
+                }
+              </td>
+              <td>
+                <span class="me-3 fw-medium">Bauen</span>
+              </td>
+              <td>
+                <span class="me-3">{{getDuration(SprintState.building2)}} Minuten</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                @if (sprintState == SprintState.review) {
+                  <fa-icon [icon]="faRightLong" class="me-3"></fa-icon>
+                }
+              </td>
+              <td>
+                <span class="me-3 fw-medium">Review</span>
+              </td>
+              <td>
+                <span class="me-3">variabel</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                @if (sprintState == SprintState.retrospective) {
+                  <fa-icon [icon]="faRightLong" class="me-3"></fa-icon>
+                }
+              </td>
+              <td>
+                <span class="me-3 fw-medium">Retrospektive</span>
+              </td>
+              <td>
+                <span class="me-3">{{getDuration(SprintState.retrospective)}} Minuten</span>
+              </td>
+            </tr>
+          </table>
+
+          @if(showStopSign) {
+            <img class="img-fluid align-self-center" style="height: 150px" src="/assets/stop.png">
+          }
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="height: 50px;">
+        @if(timerProgress != null) {
+          <ngb-progressbar class="rounded-0 position-fixed" style="height: 50px; width: 100%; bottom: 0" type="success" [value]="timerProgress"/>
+        }
+      </div>
+    </div>
+  </div>
+}

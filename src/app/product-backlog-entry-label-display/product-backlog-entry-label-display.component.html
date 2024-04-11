@@ -1,0 +1,12 @@
+@if (state == ProductBacklogEntryState.normal) {
+  <span class="fw-medium">{{label}}</span>
+}
+@if (state == ProductBacklogEntryState.addition) {
+  <span class="text-success fw-medium">{{label}}</span>
+}
+@if (state == ProductBacklogEntryState.removed) {
+  <span class="text-danger fw-medium"><del>{{label}}</del></span>
+}
+@if (state == ProductBacklogEntryState.change) {
+  <span class="text-warning fw-medium">{{label}}</span>
+}

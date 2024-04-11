@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --bs-success-rgb: 128, 186, 36;
+  --bs-danger-rgb: 156, 19, 46;
+  --bs-warning-rgb: 244, 170, 0;
+}
+
+body {
+}
