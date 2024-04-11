@@ -6,7 +6,7 @@ build:
   tags:
     - nodejs
   script:
-    - npm install
+    - npm ci
     - npm run build
   artifacts:
     paths:
