@@ -165,7 +165,6 @@ export class SprintDisplayComponent implements OnDestroy {
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    console.log(event.key)
     if (["Enter", "ArrowRight", " "].includes(event.key)) {
       this.navigateNext()
     } else if (["Backspace", "ArrowLeft"].includes(event.key)) {
