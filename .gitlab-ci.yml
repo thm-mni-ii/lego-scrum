@@ -1,5 +1,6 @@
 stages:
   - build
+  - deploy
 
 ci:
   stage: build
@@ -12,13 +13,13 @@ ci:
     paths:
       - dist/
 
-build-homepage:
-  stage: build
+deploy-firebase:
+  stage: deploy
   tags:
     - nodejs
+  only:
+    - main
   script:
     - npm ci
-    - npm run build -- --base-href "/~sspp77/legoscrum/"
-  artifacts:
-    paths:
-      - dist/
+    - npm run build
+    - npm run deploy --only hosting --token $FIREBASE_TOKEN
