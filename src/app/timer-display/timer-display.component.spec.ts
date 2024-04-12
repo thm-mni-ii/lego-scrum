@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SprintDisplayComponent } from './sprint-display.component';
+import { TimerDisplayComponent } from './timer-display.component';
 
-describe('SprintDisplayComponent', () => {
-  let component: SprintDisplayComponent;
-  let fixture: ComponentFixture<SprintDisplayComponent>;
+describe('TimerDisplayComponent', () => {
+  let component: TimerDisplayComponent;
+  let fixture: ComponentFixture<TimerDisplayComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SprintDisplayComponent]
+      imports: [TimerDisplayComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(SprintDisplayComponent);
+    fixture = TestBed.createComponent(TimerDisplayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

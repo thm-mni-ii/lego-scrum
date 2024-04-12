@@ -1,0 +1,17 @@
+<table>
+  @for (productBacklogEntry of productBacklog().entries; track productBacklogEntry.title) {
+    <tr>
+      <td class="pe-3">
+        <app-product-backlog-entry-label-display [state]="productBacklogEntry.state" [label]="($index + 1).toString() + '.'"></app-product-backlog-entry-label-display>
+      </td>
+      <td class="pe-3">
+        <app-product-backlog-entry-label-display [state]="productBacklogEntry.state" [label]="productBacklogEntry.title"></app-product-backlog-entry-label-display>
+      </td>
+      <td>
+        @if (productBacklogEntry.subTitle != "") {
+          <app-product-backlog-entry-label-display [state]="productBacklogEntry.state" [label]="'(' + productBacklogEntry.subTitle + ')'"></app-product-backlog-entry-label-display>
+        }
+      </td>
+    </tr>
+  }
+</table>
