@@ -22,4 +22,4 @@ deploy-firebase:
   script:
     - npm ci
     - npm run build
-    - npm run deploy -- --only hosting --token "$FIREBASE_TOKEN"
+    - npm run deploy -- --token "$FIREBASE_TOKEN"
