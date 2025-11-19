@@ -1,6 +1,5 @@
 stages:
   - build
-  - deploy
 
 ci:
   stage: build
@@ -13,13 +12,3 @@ ci:
     paths:
       - dist/
 
-deploy-firebase:
-  stage: deploy
-  tags:
-    - nodejs
-  only:
-    - main
-  script:
-    - npm ci
-    - npm run build
-    - npm run deploy -- --token "$FIREBASE_TOKEN"
