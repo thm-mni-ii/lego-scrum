@@ -50,7 +50,7 @@ export class NavigationService {
       case SprintState.review:
         return null
       case SprintState.retrospective:
-        return 3
+        return 2
     }
   }
 }
