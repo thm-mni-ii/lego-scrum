@@ -1,12 +1,13 @@
-import {Component, computed, inject, Signal} from '@angular/core';
-import {ProductBacklog} from "../../model/ProductBacklog";
-import {SprintNumber} from "../../model/SprintNumber";
-import {ProductBacklogEntry} from "../../model/ProductBacklogEntry";
-import {ProductBacklogEntryState} from "../../model/ProductBacklogEntryState";
-import {NavigationService} from "../navigation/navigation.service";
+import { Component, computed, inject, Signal } from '@angular/core';
+import { ProductBacklog } from "../../model/ProductBacklog";
+import { SprintNumber } from "../../model/SprintNumber";
+import { ProductBacklogEntry } from "../../model/ProductBacklogEntry";
+import { ProductBacklogEntryState } from "../../model/ProductBacklogEntryState";
+import { NavigationService } from "../navigation/navigation.service";
 import {
   ProductBacklogEntryLabelDisplayComponent
 } from "../product-backlog-entry-label-display/product-backlog-entry-label-display.component";
+import { SprintState } from "../../model/SprintState";
 
 @Component({
   selector: 'app-product-backlog-display',
@@ -24,6 +25,7 @@ export class ProductBacklogDisplayComponent {
   constructor() {
     this.productBacklog = computed(() => {
       switch (this.navigationService.sprintNumber()) {
+        case SprintNumber.introduction: return new ProductBacklog([])
         case SprintNumber.sprint1: return new ProductBacklog([
           new ProductBacklogEntry("Einstöckiges Haus", "Tür + Fenster", ProductBacklogEntryState.normal),
           new ProductBacklogEntry("Kindergarten", "+ 4 Spielgeräte", ProductBacklogEntryState.normal),
@@ -68,4 +70,8 @@ export class ProductBacklogDisplayComponent {
       }
     })
   }
+
+  protected readonly SprintNumber = SprintNumber;
+  protected readonly NavigationService = NavigationService;
+  protected readonly SprintState = SprintState;
 }

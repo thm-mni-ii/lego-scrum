@@ -1,17 +1,68 @@
-<table>
-  @for (productBacklogEntry of productBacklog().entries; track productBacklogEntry.title) {
-    <tr>
-      <td class="pe-3">
-        <app-product-backlog-entry-label-display [state]="productBacklogEntry.state" [label]="($index + 1).toString() + '.'"></app-product-backlog-entry-label-display>
-      </td>
-      <td class="pe-3">
-        <app-product-backlog-entry-label-display [state]="productBacklogEntry.state" [label]="productBacklogEntry.title"></app-product-backlog-entry-label-display>
-      </td>
-      <td>
-        @if (productBacklogEntry.subTitle != "") {
-          <app-product-backlog-entry-label-display [state]="productBacklogEntry.state" [label]="'(' + productBacklogEntry.subTitle + ')'"></app-product-backlog-entry-label-display>
-        }
-      </td>
-    </tr>
-  }
-</table>
+@if(navigationService.sprintNumber() > SprintNumber.introduction) {
+  <h5>Product Backlog</h5>
+  <table>
+    @for (productBacklogEntry of productBacklog().entries; track productBacklogEntry.title) {
+      <tr>
+        <td class="pe-3">
+          <app-product-backlog-entry-label-display [state]="productBacklogEntry.state" [label]="($index + 1).toString() + '.'"></app-product-backlog-entry-label-display>
+        </td>
+        <td class="pe-3">
+          <app-product-backlog-entry-label-display [state]="productBacklogEntry.state" [label]="productBacklogEntry.title"></app-product-backlog-entry-label-display>
+        </td>
+        <td>
+          @if (productBacklogEntry.subTitle != "") {
+            <app-product-backlog-entry-label-display [state]="productBacklogEntry.state" [label]="'(' + productBacklogEntry.subTitle + ')'"></app-product-backlog-entry-label-display>
+          }
+        </td>
+      </tr>
+    }
+  </table>
+} @else {
+  <ul>
+    <li>Vision: Wir bauen eine schöne Stadt</li>
+    <li>Organisation:</li>
+    <ul>
+      <li>Product Owner</li>
+      <li>Scrum Master</li>
+      <li>Team</li>
+    </ul>
+    <li>
+      Umsetzung:
+    </li>
+    <table>
+      <tr>
+        <td class="pe-3">Sprint Planning</td>
+        <td class="pe-3">Schätzen</td>
+        <td class="pe-3">{{NavigationService.getDuration(SprintState.planning)}} Minuten</td>
+      </tr>
+      <tr>
+        <td class="pe-3">Sprint</td>
+        <td class="pe-3">Bauen</td>
+        <td class="pe-3">{{NavigationService.getDuration(SprintState.building1)}} Minuten</td>
+      </tr>
+      <tr>
+        <td class="pe-3"></td>
+        <td class="pe-3">Daily Scrum</td>
+        <td class="pe-3">{{NavigationService.getDuration(SprintState.daily)}} Minuten</td>
+      </tr>
+      <tr>
+        <td class="pe-3"></td>
+        <td class="pe-3">Bauen</td>
+        <td class="pe-3">{{NavigationService.getDuration(SprintState.building2)}} Minuten</td>
+      </tr>
+      <tr>
+        <td class="pe-3">Review</td>
+        <td class="pe-3">Präsentation</td>
+        <td class="pe-3">variabel</td>
+      </tr>
+      <tr>
+        <td class="pe-3">Retrospektive</td>
+        <td class="pe-3">Was lief schlecht/gut, wie verbessern?</td>
+        <td class="pe-3">{{NavigationService.getDuration(SprintState.retrospective)}} Minuten</td>
+      </tr>
+    </table>
+    <li>
+      Dazwischen: <span class="fw-bold">Finger weg von den Legos</span>
+    </li>
+  </ul>
+}

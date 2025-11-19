@@ -1,6 +1,6 @@
-import {effect, Injectable, signal, WritableSignal} from '@angular/core';
-import {SprintNumber} from "../../model/SprintNumber";
-import {SprintState} from "../../model/SprintState";
+import { Injectable, signal, WritableSignal } from '@angular/core';
+import { SprintNumber } from "../../model/SprintNumber";
+import { SprintState } from "../../model/SprintState";
 
 @Injectable({
   providedIn: 'root'
@@ -10,17 +10,22 @@ export class NavigationService {
   readonly sprintState: WritableSignal<SprintState>
 
   constructor() {
-    this.sprintNumber = signal(SprintNumber.sprint1);
+    this.sprintNumber = signal(SprintNumber.introduction);
     this.sprintState = signal(SprintState.idle);
   }
 
   navigateNext() {
-    if (this.sprintState() < SprintState.retrospective) {
-      this.sprintState.update((st) => st + 1)
+    if (this.sprintNumber() === SprintNumber.introduction) {
+      this.sprintNumber.set(SprintNumber.sprint1)
+      this.sprintState.set(SprintState.idle)
     } else {
-      if (this.sprintNumber() < SprintNumber.sprint3) {
-        this.sprintNumber.update((sn) => sn + 1)
-        this.sprintState.set(SprintState.idle)
+      if (this.sprintState() < SprintState.retrospective) {
+        this.sprintState.update((st) => st + 1)
+      } else {
+        if (this.sprintNumber() < SprintNumber.sprint3) {
+          this.sprintNumber.update((sn) => sn + 1)
+          this.sprintState.set(SprintState.idle)
+        }
       }
     }
   }
@@ -32,6 +37,8 @@ export class NavigationService {
       if (this.sprintNumber() > SprintNumber.sprint1) {
         this.sprintNumber.update((sn) => sn - 1)
         this.sprintState.set(SprintState.retrospective)
+      } else {
+        this.sprintNumber.update(sn => SprintNumber.introduction);
       }
     }
   }

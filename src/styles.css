@@ -3,7 +3,8 @@
   --bs-success-rgb: 128, 186, 36;
   --bs-danger-rgb: 156, 19, 46;
   --bs-warning-rgb: 244, 170, 0;
-}
 
-body {
+  --thm-gruen: #80ba24;
+
+  --thm-grau: #4a5c66;
 }

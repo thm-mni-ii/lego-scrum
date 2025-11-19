@@ -2,10 +2,9 @@
   <div class="d-flex flex-column justify-content-between" style="height: 600px; width: 800px; transform: scale({{scale}}, {{scale}})">
     <div class="p-3">
       <div class="d-flex justify-content-between">
-        <h4>Lego SCRUM ({{this.navigationService.sprintNumber()}}. Sprint)</h4>
+        <h4>Lego SCRUM {{this.title()}}</h4>
         <img ngSrc="assets/mni.svg" alt="THM MNI Logo" height="39" width="300" priority>
       </div>
-      <h5>Product Backlog</h5>
       <div class="d-flex justify-content-between">
         <app-product-backlog-display></app-product-backlog-display>
         <div class="d-flex flex-column align-items-end">

@@ -3,6 +3,7 @@ import {faRightLong} from "@fortawesome/free-solid-svg-icons/faRightLong";
 import {SprintState} from "../../model/SprintState";
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {NavigationService} from "../navigation/navigation.service";
+import { SprintNumber } from "../../model/SprintNumber";
 
 @Component({
   selector: 'app-sprint-state-display',
@@ -18,4 +19,5 @@ export class SprintStateDisplayComponent {
   protected readonly SprintState = SprintState;
   protected navigationService: NavigationService = inject(NavigationService)
   protected readonly NavigationService = NavigationService;
+  protected readonly SprintNumber = SprintNumber;
 }

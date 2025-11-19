@@ -1,26 +1,17 @@
-import {
-  AfterContentInit,
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  HostListener,
-  inject, OnInit,
-  ViewChild
-} from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import {NgOptimizedImage} from "@angular/common";
-import {ProductBacklogDisplayComponent} from "./product-backlog-display/product-backlog-display.component";
-import {SprintStateDisplayComponent} from "./sprint-state-display/sprint-state-display.component";
-import {StopSignDisplayComponent} from "./stop-sign-display/stop-sign-display.component";
-import {TimerDisplayComponent} from "./timer-display/timer-display.component";
-import {NavigationService} from "./navigation/navigation.service";
-import {AudioControlsComponent} from "./audio-controls/audio-controls.component";
+import { Component, ElementRef, HostListener, inject, ViewChild } from '@angular/core';
+import { NgOptimizedImage } from "@angular/common";
+import { ProductBacklogDisplayComponent } from "./product-backlog-display/product-backlog-display.component";
+import { SprintStateDisplayComponent } from "./sprint-state-display/sprint-state-display.component";
+import { StopSignDisplayComponent } from "./stop-sign-display/stop-sign-display.component";
+import { TimerDisplayComponent } from "./timer-display/timer-display.component";
+import { NavigationService } from "./navigation/navigation.service";
+import { AudioControlsComponent } from "./audio-controls/audio-controls.component";
+import { SprintNumber } from "../model/SprintNumber";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgOptimizedImage, ProductBacklogDisplayComponent, SprintStateDisplayComponent, StopSignDisplayComponent, TimerDisplayComponent, AudioControlsComponent],
+  imports: [NgOptimizedImage, ProductBacklogDisplayComponent, SprintStateDisplayComponent, StopSignDisplayComponent, TimerDisplayComponent, AudioControlsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -66,5 +57,12 @@ export class AppComponent {
       // should scale y
       return windowHeight / 600
     }
+  }
+
+  title(): string {
+    if (this.navigationService.sprintNumber() === SprintNumber.introduction) {
+      return " - das Spiel"
+    }
+    return `(${this.navigationService.sprintNumber()}. Sprint)`
   }
 }

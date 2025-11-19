@@ -1,8 +1,8 @@
-@if(navigationService.sprintState() == SprintState.idle && navigationService.sprintNumber() == SprintNumber.sprint1) {
+@if((navigationService.sprintState() == SprintState.idle && navigationService.sprintNumber() == SprintNumber.sprint1) || navigationService.sprintNumber() === SprintNumber.introduction) {
   <div class="ps-3 mb-3">
     <button class="btn btn-sm btn-outline-primary" (click)="testAudio()">
       <fa-icon [icon]="faVolumeHigh" class="me-1"></fa-icon>
-      Test Audio
+      Ka-Tsching
     </button>
   </div>
 }
