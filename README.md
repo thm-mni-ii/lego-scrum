@@ -1,4 +1,4 @@
-<img src="https://git.thm.de/sspp77/LegoSCRUM/-/raw/main/src/assets/brick_rounded.png" alt="Image Description" height="100">
+<img src="src/assets/brick_rounded.png" alt="Image Description" height="100">
 
 # LegoSCRUM
 
